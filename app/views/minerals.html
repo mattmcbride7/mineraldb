@@ -1,0 +1,77 @@
+<!-- Power Search
+  <div class="well">
+    <div class="dropdown">
+      <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Group <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labeledby="dLabel">
+        <li>Native Elements</li>
+        <li>Sulfides</li>
+        <li>Halides</li>
+      </ul>
+    </div>
+
+    <div class="form">
+      <label>Hardness</label>
+      <input type="text" class="form-control" placeholder="ex. 5" />
+    </div>
+
+    <div class="dropdown">
+      <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Luster <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labeledby="dLabel">
+        <li>Metallic</li>
+        <li>Vitreous</li>
+        <li>Resinous</li>
+      </ul>
+    </div>
+
+
+  </div>
+-->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th ng-click="doSort('mineral')">Mineral</th>
+            <th ng-click="doSort('group')">Group</th>
+            <th ng-click="doSort('hardness')">Hardness</th>
+            <th ng-click="doSort('gravity')">Specific Gravity</th>
+            <th ng-click="doSort('luster')">Luster</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="mineral in minerals | filter:mineralFilter | orderBy:sortBy:reverse">
+            <td>{{ ::mineral.name }}</td>
+            <td>{{ ::mineral.group }}</td>
+            <td>{{ ::mineral.hardness }}</td>
+            <td>{{ ::mineral.gravity }}</td>
+            <td>{{ ::mineral.luster }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<form ng-if="userLoggedIn == true">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" ng-model="newMineral.name" placeholder="Name" />
+    </div>
+    <div class="form-group">
+        <label>Group</label>
+        <input type="text" class="form-control" ng-model="newMineral.group" placeholder="Group" />
+    </div>
+    <div class="form-group">
+        <label>Hardness</label>
+        <input type="text" class="form-control" ng-model="newMineral.hardness" placeholder="Hardness" />
+    </div>
+    <div class="form-group">
+        <label>Specific Gravity</label>
+        <input type="text" class="form-control" ng-model="newMineral.gravity" placeholder="Specific Gravity" />
+    </div>
+    <div class="form-group">
+        <label>Luster</label>
+        <input type="text" class="form-control" ng-model="newMineral.luster" placeholder="Luster" />
+    </div>
+    <button class="btn btn-primary" ng-click="addMineral()">Submit</button>
+</form>

@@ -33,7 +33,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th ng-click="doSort('mineral')">Mineral</th>
+            <th ng-click="doSort('name')">Mineral</th>
+    <!--        <th ng-click="doSort('formula')">Formula</th>     -->
             <th ng-click="doSort('group')">Group</th>
             <th ng-click="doSort('hardness')">Hardness</th>
             <th ng-click="doSort('gravity')">Specific Gravity</th>
@@ -42,7 +43,8 @@
     </thead>
     <tbody>
         <tr ng-repeat="mineral in minerals | filter:mineralFilter | orderBy:sortBy:reverse">
-            <td>{{ ::mineral.name }}</td>
+            <td><a href="#/minerals/{{ mineral.name }}">{{ ::mineral.name }}</a></td>
+    <!--        <td>{{ ::mineral.formula }}</td>    -->
             <td>{{ ::mineral.group }}</td>
             <td>{{ ::mineral.hardness }}</td>
             <td>{{ ::mineral.gravity }}</td>

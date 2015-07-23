@@ -2,7 +2,19 @@
    <i class="fa fa-spinner fa-spin fa-3x"></i>
 </div>
  <div ng-show="loaded">
+
+<!-- Start Power search Panel -->
   <div class="panel">
+
+<!-- Group power search option -->
+    <span class="dropdown">
+      <select ng-model="groupFilter">
+        <option value="">Group</option>
+        <option ng-repeat="group in groupOptions" value="{{ group }}">{{ group }}</option>
+      </select>
+    </span>
+
+<!-- Hardness power search option -->
     <span class="dropdown">
       <select ng-model="hardnessFilter">
         <option value="">Hardness</option>
@@ -10,25 +22,18 @@
       </select>
     </span>
 
-
+<!-- Luster power search option -->
     <span class="dropdown">
-      <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Luster <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labeledby="dLabel">
-        <li>Adamantine</li>
-        <li>Dull</li>
-        <li>Earthy</li>
-        <li>Metallic</li>
-        <li>Resinous</li>
-        <li>Vitreous</li>
-        <li>Waxy</li>
-      </ul>
+      <select ng-model="lusterFilter">
+        <option value="">Luster</option>
+        <option ng-repeat="luster in lusterOptions" value="{{ luster }}">{{ luster }}</option>
+      </select>
     </span>
 
+  </div>
+<!-- End Power Search Panel -->
 
-  </div> <!-- end power search panel -->
-
+<!-- Mineral Table -->
 <table class="table table-striped">
     <thead>
         <tr>
@@ -41,8 +46,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="mineral in minerals | orderBy:sortBy:reverse">
-            <td><a ng-href="#/mineralDetail/{{mineral.$id}}">{{ ::mineral.name }}</a></td>
+        <tr ng-repeat="mineral in minerals | filter:{group: groupFilter, hardness: hardnessFilter, luster: lusterFilter} | orderBy:sortBy:reverse">
+            <td><!-- <a ng-href="#/mineralDetail/{{mineral.$id}}">-->{{ ::mineral.name }}<!--</a>--></td>
     <!--        <td>{{ ::mineral.formula }}</td>    -->
             <td>{{ ::mineral.group }}</td>
             <td>{{ ::mineral.hardness }}</td>

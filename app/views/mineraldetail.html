@@ -1,0 +1,24 @@
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">Info</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-6">
+          Hardness<br/>
+          Specific Gravity<br/>
+          Luster<br/>
+        </div>
+        <div class="col-xs-6">
+          {{ ::mineral.hardness }}<br/>
+          {{ ::mineral.gravity }}<br/>
+          {{ ::mineral.luster }}<br/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="col-md-6">
+  <h2 class="page-header">{{ ::mineral.name }}</h2>
+  <p>{{ ::mineral.description }}</p>
+</div>

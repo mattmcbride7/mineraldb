@@ -1,35 +1,34 @@
-<!-- Power Search
-  <div class="well">
-    <div class="dropdown">
-      <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Group <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labeledby="dLabel">
-        <li>Native Elements</li>
-        <li>Sulfides</li>
-        <li>Halides</li>
-      </ul>
-    </div>
+ <div ng-hide="loaded" class="center">
+   <i class="fa fa-spinner fa-spin fa-3x"></i>
+</div>
+ <div ng-show="loaded">
+  <div class="panel">
+    <span class="dropdown">
+      <select ng-model="hardnessFilter">
+        <option value="">Hardness</option>
+        <option ng-repeat="hardness in hardnessOptions" value="{{ hardness }}">{{ hardness }}</option>
+      </select>
+    </span>
 
-    <div class="form">
-      <label>Hardness</label>
-      <input type="text" class="form-control" placeholder="ex. 5" />
-    </div>
 
-    <div class="dropdown">
+    <span class="dropdown">
       <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Luster <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labeledby="dLabel">
+        <li>Adamantine</li>
+        <li>Dull</li>
+        <li>Earthy</li>
         <li>Metallic</li>
-        <li>Vitreous</li>
         <li>Resinous</li>
+        <li>Vitreous</li>
+        <li>Waxy</li>
       </ul>
-    </div>
+    </span>
 
 
-  </div>
--->
+  </div> <!-- end power search panel -->
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -42,8 +41,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="mineral in minerals | filter:mineralFilter | orderBy:sortBy:reverse">
-            <td><a href="#/minerals/{{ mineral.name }}">{{ ::mineral.name }}</a></td>
+        <tr ng-repeat="mineral in minerals | orderBy:sortBy:reverse">
+            <td><a ng-href="#/mineralDetail/{{mineral.$id}}">{{ ::mineral.name }}</a></td>
     <!--        <td>{{ ::mineral.formula }}</td>    -->
             <td>{{ ::mineral.group }}</td>
             <td>{{ ::mineral.hardness }}</td>
@@ -75,5 +74,10 @@
         <label>Luster</label>
         <input type="text" class="form-control" ng-model="newMineral.luster" placeholder="Luster" />
     </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control" ng-model="newMineral.description" placeholder="Description" />
+    </div>
     <button class="btn btn-primary" ng-click="addMineral()">Submit</button>
 </form>
+</div>
